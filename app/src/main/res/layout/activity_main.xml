@@ -10,8 +10,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="practise.yeh.com.practice.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/margin_normal"
+        android:numColumns="3"
+        android:verticalSpacing="@dimen/margin_small"/>
 </RelativeLayout>
