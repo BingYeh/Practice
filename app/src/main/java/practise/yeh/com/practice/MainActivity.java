@@ -1,5 +1,6 @@
 package practise.yeh.com.practice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import practise.yeh.com.practice.beziercurve.BeziercurveLineActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,12 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
-        for (int i = 0; i < 10; i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("image", R.drawable.test);
-            map.put("text", String.format("test%d", i));
-            list.add(map);
-        }
+        initListData(list);
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, list, R.layout.grid_list_item, new
                 String[]{"image", "text"}, new int[]{R.id.grid_item_image, R.id
@@ -49,13 +47,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * 初始化例子项
+     */
+    private void initListData(List<Map<String, Object>> list) {
+        //类似唱歌软件Path动画
+        list.add(getMapItem(R.drawable.test, "类似唱歌软件Path动画", 0));
+        list.add(getMapItem(R.drawable.bezier, "贝塞尔曲线生成过程", 1));
+    }
+
+    private Map<String, Object> getMapItem(int drawableResId, String describe, int index) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("image", drawableResId);
+        map.put("text", describe);
+        map.put("position", index);
+        return map;
+    }
+
+    /**
      * widget events
      */
     private void bindEvents() {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                //TODO
+                HashMap<String, Object> item = (HashMap<String, Object>) parent.getItemAtPosition(position);
+                switch ((Integer) item.get("position")) {
+                    case 0:
+                        break;
+                    case 1:
+                        Intent intent = new Intent(MainActivity.this, BeziercurveLineActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }

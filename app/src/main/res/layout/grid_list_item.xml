@@ -4,11 +4,19 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <!-- ListView,GridView中不能使用gif,会造成内存溢出
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/grid_item_image"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:scaleType="fitCenter"/>
+        -->
+    <ImageView
+        android:id="@+id/grid_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="fitCenter"/>
+
     <TextView
         android:id="@+id/grid_item_describe"
         android:layout_width="match_parent"
