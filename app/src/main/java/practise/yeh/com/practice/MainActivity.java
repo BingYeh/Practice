@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
      * 初始化例子项
      */
     private void initListData(List<Map<String, Object>> list) {
-        //类似唱歌软件Path动画
-        list.add(getMapItem(R.drawable.test, "类似唱歌软件Path动画", 0));
         list.add(getMapItem(R.drawable.bezier, "贝塞尔曲线生成过程", 1));
     }
 
