@@ -1,21 +1,24 @@
-package practise.yeh.com.practice;
+package practise.yeh.com.practice.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+
+import com.yeh.bezier.app.BeziercurveLineActivity;
+import com.yeh.samplesbookone.app.activity.SamplesBookActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import practise.yeh.com.practice.beziercurve.BeziercurveLineActivity;
+import practise.yeh.com.practice.R;
+import practise.yeh.com.practice.util.Constants;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private GridView mGridView;
 
@@ -24,20 +27,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init();
+        initialize();
 
         bindEvents();
     }
 
-    /**
-     * initialize widget and data
-     */
-    private void init() {
+    protected void initialize() {
         mGridView = (GridView) findViewById(R.id.grid_view);
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
-        initListData(list);
+        for (int i = 0; i < Constants.itemArray.length; i++) {
+            int drawableResId = (int) Constants.itemArray[i][0];
+            String describe = Constants.itemArray[i][1].toString();
+            //生成GridView adapter对象
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("image", drawableResId);
+            map.put("text", describe);
+            map.put("position", i);
+            list.add(map);
+        }
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, list, R.layout.grid_list_item, new
                 String[]{"image", "text"}, new int[]{R.id.grid_item_image, R.id
@@ -46,35 +55,19 @@ public class MainActivity extends AppCompatActivity {
         mGridView.setAdapter(simpleAdapter);
     }
 
-    /**
-     * 初始化例子项
-     */
-    private void initListData(List<Map<String, Object>> list) {
-        list.add(getMapItem(R.drawable.bezier, "贝塞尔曲线生成过程", 1));
-    }
-
-    private Map<String, Object> getMapItem(int drawableResId, String describe, int index) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("image", drawableResId);
-        map.put("text", describe);
-        map.put("position", index);
-        return map;
-    }
-
-    /**
-     * widget events
-     */
-    private void bindEvents() {
+    @Override
+    protected void bindEvents() {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO
                 HashMap<String, Object> item = (HashMap<String, Object>) parent.getItemAtPosition(position);
                 switch ((Integer) item.get("position")) {
                     case 0:
+                        Intent intent = new Intent(MainActivity.this, BeziercurveLineActivity.class);
+                        startActivity(intent);
                         break;
                     case 1:
-                        Intent intent = new Intent(MainActivity.this, BeziercurveLineActivity.class);
+                        intent = new Intent(MainActivity.this, SamplesBookActivity.class);
                         startActivity(intent);
                         break;
                     default:

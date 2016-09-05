@@ -1,10 +1,8 @@
-package practise.yeh.com.practice.beziercurve;
+package com.yeh.bezier.app;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.RadioGroup;
-
-import practise.yeh.com.practice.R;
 
 /**
  * Created by bestv-developer on 16/5/25.
@@ -41,16 +39,23 @@ public class BeziercurveLineActivity extends Activity {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rb_control1:
-                        mBezierThree.setMode(true);
-                        break;
-                    case R.id.rb_control2:
-                        mBezierThree.setMode(false);
-                        break;
-                    default:
-                        break;
+                //Project -> Library
+                //I've replaced the switch/case statement with if/else.
+                if (checkedId == R.id.rb_control1) {
+                    mBezierThree.setMode(true);
+                } else if (checkedId == R.id.rb_control2) {
+                    mBezierThree.setMode(false);
                 }
+//                switch (checkedId) {
+//                    case R.id.rb_control1
+//                        mBezierThree.setMode(true);
+//                        break;
+//                    case R.id.rb_control2:
+//                        mBezierThree.setMode(false);
+//                        break;
+//                    default:
+//                        break;
+//                }
             }
         });
     }

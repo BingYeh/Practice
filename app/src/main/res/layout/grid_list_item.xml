@@ -15,10 +15,11 @@
         android:id="@+id/grid_item_image"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/grid_item_describe"
         android:layout_width="match_parent"
+        android:gravity="center_vertical"
         android:layout_height="wrap_content"/>
 </LinearLayout>

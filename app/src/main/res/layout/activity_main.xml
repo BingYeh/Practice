@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="practise.yeh.com.practice.MainActivity">
+    tools:context=".activity.MainActivity">
 
     <GridView
         android:id="@+id/grid_view"
